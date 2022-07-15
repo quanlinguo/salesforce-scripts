@@ -8,5 +8,5 @@ open-readme:
 
 publish:
 	git pull
-	git commit -m "${CURRENT_USE_CASE}"
+	git commit -m ${CURRENT_USE_CASE}
 	git push
