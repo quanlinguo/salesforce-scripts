@@ -1,4 +1,4 @@
-CURRENT_USE_CASE:="Get access token using Salesforce CLI"
+CURRENT_USE_CASE:="List installed packages"
 
 git-status:
 	git status

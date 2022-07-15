@@ -1,9 +1,4 @@
-"""
-Hello World
-"""
-
 from . import hello_world_helper
-
 def hello_world():
     print("Hello World!")
 

@@ -12,6 +12,7 @@ setup(
     install_requires=[
         'simple-salesforce',
         'python-csv',
+        'requests',
         'google-cloud-bigquery',
     ],
 

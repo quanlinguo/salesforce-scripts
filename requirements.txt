@@ -1,3 +1,4 @@
 simple-salesforce
 python-csv
+requests
 google-cloud-bigquery

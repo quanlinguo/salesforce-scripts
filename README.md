@@ -2,33 +2,33 @@
 
 ##  Use Case 1: Get Access Token
 
-### [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)
+ *  [Install Salesforce CLI](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_install_cli.htm)
 
-### Create a DX project
-
+ *  Create a DX project
+    ```
     sfdx force:project:create --projectname project1
 
     cd project1
     sfdx force:auth:web:login --setalias project1 --setdefaultusername
     sfdx force:org:display --verbose --json > ~/.salesforce-scripts/project1-auth-file.json
-
-### Install this package
-
+    ```
+ *  Install this package
+    ```
     git clone git@github.com:quanlinguo/salesforce-scripts.git
     cd salesforce-scripts
     pip install .
-
-### Code
-
-    from salesforce_scripts import get_access_token
-    get_access_token()
-
+    ```
+ *  Code
+    ```
+    import salesforce_scripts
+    access_token=salesforce_scripts.get_access_token()
+    ```
 ## Design Principles
 
  *  Practical use cases > style
  *  Productivity > minimalism
     -  Use Salesforce CLI
-    -  Use simple-python
+    -  Use [simple-salesforce](https://github.com/simple-salesforce/simple-salesforce)
     -  Use BigQuery
     -  Use dbt
     -  Use Elasticsearch
