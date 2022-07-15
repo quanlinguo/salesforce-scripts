@@ -48,19 +48,28 @@ def refresh_access_token(username=''):
     config_dir = get_config_dir()
 
     auth_file_path = config_dir + username + '-auth-file.json'
+    if not os.path.exists(os.path.expanduser(auth_file_path)):
+        e = Exception("There is no auth file at %s" % auth_file_path)
+        raise e
 
-    stream = os.popen("sfdx auth:sfdxurl:store -f %s --json" % auth_file_path)
+    cmd = "sfdx auth:sfdxurl:store -f %s --json" % auth_file_path
+    stream = os.popen(cmd)
     output_json = json.loads(stream.read())
 
     config_dir_abs = os.path.expanduser(config_dir)
     token_file_path = config_dir_abs + username + '-token-file.json'
 
-    with open(token_file_path, 'w') as f:
-        pretty_json = json.dumps(output_json, indent=4, sort_keys=False)
-        f.write(pretty_json)
-
     if "result" in output_json and "accessToken" in output_json["result"]:
+        with open(token_file_path, 'w') as f:
+            pretty_json = json.dumps(output_json, indent=4, sort_keys=False)
+            f.write(pretty_json)
         return output_json["result"]["accessToken"]
+    else:
+        pretty_json = json.dumps(output_json, indent=4, sort_keys=False)
+        print(pretty_json)
+        cwd = os.getcwd()
+        e = Exception("Can't refresh access token with `%s` with current directory: %s" % (cmd, cwd))
+        raise e
 
 def get_access_token(username=''):
     """Get an access token using a given auth file.
@@ -95,7 +104,10 @@ def get_access_token(username=''):
                 token_json = json.loads(f.read())
                 if "result" in token_json and "accessToken" in token_json["result"]:
                     token = token_json["result"]["accessToken"]
-                    pathlib.Path(token_file_path).touch()
+                else:
+                    print("Token file %s has no result.accessToken" % token_file_path)
+        else: 
+            print("Token file %s is more than 24 hours old" % token_file_path)
 
     if token == '':
         token = refresh_access_token(username)
