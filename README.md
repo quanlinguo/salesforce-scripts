@@ -35,6 +35,7 @@
  *  Help friends first
 
 ##  Coding Style
+
  *  Use [Google style](https://google.github.io/styleguide/pyguide.html) [comments for ease of reading](https://queirozf.com/entries/python-docstrings-reference-examples), instead of ReStructuredText
     ```
     def func(arg1, arg2):
