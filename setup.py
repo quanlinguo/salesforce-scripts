@@ -11,7 +11,9 @@ setup(
     packages=['salesforce_scripts'],
     install_requires=[
         'simple-salesforce',
-        'python-csv'],
+        'python-csv',
+        'google-cloud-bigquery',
+    ],
 
     classifiers=[
         'Development Status :: 1 - Prototyping',
