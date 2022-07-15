@@ -1,5 +1,22 @@
 ##  Salesforce Scripts
 
+##  Use Case 1: Get Access Token
+
+### Setup
+
+    sfdx force:project:create --projectname project1
+
+    cd project1
+    sfdx force:auth:web:login --setalias project1 --setdefaultusername
+    sfdx force:org:display --verbose --json > ~/.salesforce-scripts/project1-auth-file.json
+
+    pip install .
+
+### Code
+
+    from salesforce_scripts import get_access_token
+    get_access_token()
+
 ### Design & Development Principles
 
  *  Practical use cases > style
