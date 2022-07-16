@@ -10,12 +10,12 @@ def list_installed_packages(instance, access_token):
         req.setEndpoint('https://MyDomainName.my.salesforce.com/services/data/v55.0/tooling/query/?q=Select+id,Name+from+MetadataContainer+Where+ID=\'' + containerID +  '\'');
     """
     q = """
-        SELECT Id, SubscriberPackageId, SubscriberPackage.NamespacePrefix,
-            SubscriberPackage.Name, SubscriberPackageVersion.Id,
-            SubscriberPackageVersion.Name, SubscriberPackageVersion.MajorVersion,
-            SubscriberPackageVersion.MinorVersion,
-            SubscriberPackageVersion.PatchVersion,
-            SubscriberPackageVersion.BuildNumber
+        SELECT Id, 
+            SubscriberPackage.NamespacePrefix,
+            SubscriberPackage.Name, 
+            SubscriberPackageVersion.Name, 
+            SubscriberPackageVersion.MajorVersion,
+            SubscriberPackageVersion.MinorVersion
         FROM InstalledSubscriberPackage
         ORDER BY SubscriberPackageId
     """
@@ -31,7 +31,21 @@ def list_installed_packages(instance, access_token):
     response = requests.get(url=url, headers=headers)
     response_json = json.loads(response.text)
 
-    return response_json
+    packages = []
+    for rec in response_json["records"]:
+        pkg = {
+                "Id": rec["Id"],
+                "NamespacePrefix": rec["SubscriberPackage"]["NamespacePrefix"],
+                "Name": rec["SubscriberPackage"]["Name"],
+                "Version": str(rec["SubscriberPackageVersion"]["Name"]) + " "
+                         + str(rec["SubscriberPackageVersion"]["MajorVersion"]) + "."
+                         + str(rec["SubscriberPackageVersion"]["MinorVersion"])
+                }
+        packages.append(pkg)
+
+    packages_json = {"packages": packages}
+
+    return packages_json
 
 if __name__ == "__main__":
     import get_access_token
