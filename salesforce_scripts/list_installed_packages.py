@@ -25,8 +25,8 @@ def list_installed_packages(instance, access_token):
     url = service_url + "?q=" + q.strip().replace(' ', '+')
 
     headers = {
-            'Authorization' : "OAuth " + access_token, 
-            'Accept' : "application/json" }
+            'Authorization': "OAuth " + access_token, 
+            'Accept': "application/json" }
 
     response = requests.get(url=url, headers=headers)
     response_json = json.loads(response.text)

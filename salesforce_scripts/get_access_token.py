@@ -103,7 +103,7 @@ def get_instance_url_and_access_token(username=''):
     if os.path.exists(token_file_path):
         ''' make sure the file is not more than 5 minutes
         '''
-        if time.time() - os.path.getmtime(token_file_path) < 5 * 60:
+        if time.time() - os.path.getmtime(token_file_path) < 20 * 60:
             with open(token_file_path, 'r') as f:
                 token_json = json.loads(f.read())
                 if "result" in token_json and "accessToken" in token_json["result"]:
@@ -116,7 +116,7 @@ def get_instance_url_and_access_token(username=''):
                 else:
                     print("Token file %s has no result.instanceUrl" % token_file_path)
         else: 
-            print("Token file %s is more than 24 hours old" % token_file_path)
+            print("Token file %s is more than 20 minutes old" % token_file_path)
 
     if url == '' or token == '':
         (url, token) = refresh_access_token(username)
