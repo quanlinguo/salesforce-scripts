@@ -55,8 +55,8 @@
  *  Productivity > minimalism
     -  Use Salesforce CLI
     -  Use [simple-salesforce](https://github.com/simple-salesforce/simple-salesforce)
-    -  Use BigQuery
-    -  Use dbt
+    -  Use [Pandas](https://pandas.pydata.org/pandas-docs/version/0.15/tutorials.html), [sort of like SQL](https://towardsdatascience.com/pandas-vs-sql-compared-with-examples-3f14db65c06f)
+    -  Use BigQuery & dbt
     -  Use Elasticsearch
  *  Help friends first
 
