@@ -1,3 +1,5 @@
+CURRENT_USE_CASE='pytest'
+
 git-status:
 	git status
 
