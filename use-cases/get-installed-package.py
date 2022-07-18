@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import salesforce_scripts
 
 (instance, token) = salesforce_scripts.get_instance_and_access_token()

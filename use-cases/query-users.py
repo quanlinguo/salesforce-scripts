@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import salesforce_scripts
 
 def test_query_users():
