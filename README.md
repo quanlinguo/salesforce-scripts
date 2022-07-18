@@ -31,25 +31,20 @@
 
 ##  Use Case 2: List Users
 
-    ```
     import salesforce_scripts
     import json
 
     (instance, token) = salesforce_scripts.get_instance_and_access_token()
     print(json.dumps(salesforce_scripts.list_users(instance, token), indent=4))
     
-    ```
 
 ##  Use Case 3: List Installed Packages
 
-    ```
     import salesforce_scripts
     import json
 
     (instance, token) = salesforce_scripts.get_instance_and_access_token()
     print(json.dumps(salesforce_scripts.list_installed_packages(instance, token), indent=4))
-    
-    ```
 
 ## Design Principles
 
