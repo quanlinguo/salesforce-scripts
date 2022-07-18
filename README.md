@@ -29,13 +29,13 @@
     '''If you are not in the project1 directory, pass the username alias as a parameter'''
     (instance, token) = salesforce_scripts.get_instance_and_access_token(username="project1")
 
-##  Use Case 2: List Users
+##  Use Case 2: Query for Users
 
     import salesforce_scripts
     import json
 
     (instance, token) = salesforce_scripts.get_instance_and_access_token()
-    print(json.dumps(salesforce_scripts.list_users(instance, token), indent=4))
+    print(json.dumps(salesforce_scripts.query_users(instance, token), indent=4))
     
 
 ##  Use Case 3: List Installed Packages
