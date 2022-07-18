@@ -29,6 +29,10 @@ def list_installed_packages(instance, access_token):
             'Accept': "application/json" }
 
     response = requests.get(url=url, headers=headers)
+    if response.status_code != 200:
+        e = Exception("Http Request Status Code: %s; \nText: %s\n\nLikely reason: It takes admin privilege to select from InstalledSubscriberPackage. \n" % (response.status_code, response.text))
+        raise e
+
     response_json = json.loads(response.text)
 
     packages = []
@@ -48,7 +52,7 @@ def list_installed_packages(instance, access_token):
     return packages_json
 
 if __name__ == "__main__":
-    import get_access_token
+    import access_token
     import json
-    (instance, token) = get_access_token.get_instance_and_access_token("wisdom")
+    (instance, token) = access_token.get_instance_and_access_token("dev1")
     print(json.dumps(list_installed_packages(instance, token), indent=4))
