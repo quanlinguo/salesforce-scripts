@@ -24,7 +24,11 @@
     ```
     import salesforce_scripts
 
+    '''Assume you are still in the project1 directory'''
     (instance, token) = salesforce_scripts.get_instance_and_access_token()
+
+    '''If you are not in the project1 directory, pass the username alias as a parameter'''
+    (instance, token) = salesforce_scripts.get_instance_and_access_token(username="project1")
     ```
 
 ##  Use Case 2: List Users
