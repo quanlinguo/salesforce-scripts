@@ -1,7 +1,10 @@
-CURRENT_USE_CASE:="List installed packages"
+CURRENT_USE_CASE:="pytest"
 
 git-status:
 	git status
+
+install:
+	pip install .
 
 open-readme:
 	open https://github.com/quanlinguo/salesforce-scripts
