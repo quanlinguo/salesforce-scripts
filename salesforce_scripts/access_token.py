@@ -131,12 +131,6 @@ def get_instance_and_access_token(username=''):
 
     return (instance, token)
 
-def get_access_token(username=''):
-    """Get an access token using a given auth file.
-    """
-    (url, token) = get_instance_url_and_access_token(username)
-    return token
-
 if __name__ == "__main__":
     # get_default_username()
     print(get_access_token("wisdom"))

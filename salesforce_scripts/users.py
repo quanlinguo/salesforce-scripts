@@ -1,6 +1,6 @@
 import simple_salesforce
 
-def list_users(instance, access_token):
+def query_users(instance, access_token):
     q = """
         SELECT Id, Username
           FROM User
@@ -14,4 +14,4 @@ if __name__ == "__main__":
     import get_access_token
     import json
     (instance, token) = get_access_token.get_instance_and_access_token("wisdom")
-    print(json.dumps(list_users(instance, token), indent=4))
+    print(json.dumps(query_users(instance, token), indent=4))

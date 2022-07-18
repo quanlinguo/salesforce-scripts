@@ -10,6 +10,7 @@ setup(
     license='MIT',
     packages=['salesforce_scripts'],
     install_requires=[
+        'pytest',
         'simple-salesforce',
         'python-csv',
         'requests',

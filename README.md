@@ -60,6 +60,10 @@
     -  Use Elasticsearch
  *  Help friends first
 
+##  Testing with [Pytest](https://docs.pytest.org/en/7.1.x/how-to/index.html)
+
+ *  [Pytest is simpler than unittest](https://www.pythonpool.com/python-unittest-vs-pytest/)
+
 ##  Coding Style
 
  *  Use [Google style](https://google.github.io/styleguide/pyguide.html) [comments for ease of reading](https://queirozf.com/entries/python-docstrings-reference-examples), instead of ReStructuredText
