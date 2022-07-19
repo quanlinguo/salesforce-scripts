@@ -1,4 +1,4 @@
-CURRENT_USE_CASE:="pytest"
+CURRENT_USE_CASE:="Describe object"
 
 git-status:
 	git status
