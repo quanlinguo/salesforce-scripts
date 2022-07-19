@@ -1,30 +1,25 @@
 import json
 import simple_salesforce
 
-def describe(instance, access_token):
+def list_objects(instance, access_token):
     """ describe
     """
 
     sf = simple_salesforce.Salesforce(instance=instance, session_id=access_token)
-    sf.describe()
-
-    for x in sf.describe()["sobjects"]:
-        print(x["name"], "\t", x["label"])
+    return sf.describe()
 
 def describe_object(instance, access_token, object_name):
-    """ describe
+    """ describe: works better than sfdx force:schema:sobject:describe, which misses formula fields!
     """
 
     sf = simple_salesforce.Salesforce(instance=instance, session_id=access_token)
 
     describe_response = sf.mdapi.CustomObject.describe()
     custom_object = sf.mdapi.CustomObject.read(object_name)
-    print(custom_object)
+    return custom_object
 
 if __name__ == "__main__":
-    import get_access_token
+    import access_token
     import json
-    (instance, token) = get_access_token.get_instance_and_access_token("wisdom")
-    # describe(instance, token)
-    # describe_object(instance, token, "AAA_Case__c")
-    describe_object(instance, token, "Contact")
+    (instance, token) = access_token.get_instance_and_access_token("wisdom")
+    print(describe_object(instance, token, "Account"))

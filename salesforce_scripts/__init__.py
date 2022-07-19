@@ -10,6 +10,9 @@ from .access_token import get_instance_url_and_access_token
 
 from .users import query_users
 
+from .describe import list_objects
+from .describe import describe_object
+
 from .installed_packages import list_installed_packages
 
 __version__ = "0.1.0"
