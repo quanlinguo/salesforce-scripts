@@ -51,6 +51,7 @@
  *  Practical use cases > style
  *  Productivity > minimalism
     -  Use Salesforce CLI
+	-  Use json data format
     -  Use [make](https://www.gnu.org/software/make/) to organize ad hoc scripts -- It's so productive!
     -  Use [simple-salesforce](https://github.com/simple-salesforce/simple-salesforce)
     -  Use [Pandas](https://pandas.pydata.org/pandas-docs/version/0.15/tutorials.html), [sort of like SQL](https://towardsdatascience.com/pandas-vs-sql-compared-with-examples-3f14db65c06f)

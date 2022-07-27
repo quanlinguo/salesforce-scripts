@@ -60,14 +60,16 @@ def refresh_access_token(username=''):
     token_file_path = config_dir_abs + username + '-token-file.json'
 
     if ("result" in output_json
-            and "accessToken" in output_json["result"]
+            and "orgId" in output_json["result"]
+            and "instanceUrl" in output_json["result"]
             and "accessToken" in output_json["result"]):
         with open(token_file_path, 'w') as f:
             pretty_json = json.dumps(output_json, indent=4, sort_keys=False)
             f.write(pretty_json)
+        orgId = output_json["result"]["orgId"]
         url = output_json["result"]["instanceUrl"]
         token = output_json["result"]["accessToken"]
-        return (url, token)
+        return (orgId, url, token)
     else:
         pretty_json = json.dumps(output_json, indent=4, sort_keys=False)
         print(pretty_json)
@@ -75,7 +77,7 @@ def refresh_access_token(username=''):
         e = Exception("Can't refresh access token with `%s` with current directory: %s" % (cmd, cwd))
         raise e
 
-def get_instance_url_and_access_token(username=''):
+def get_org_id_instance_url_and_access_token(username=''):
     """Get the insance URL and an access token using a given auth file.
 
     Args:
@@ -99,7 +101,7 @@ def get_instance_url_and_access_token(username=''):
     config_dir_abs = os.path.expanduser(config_dir)
     token_file_path = config_dir_abs + username + '-token-file.json'
 
-    (url, token) = ('', '')
+    (orgId, url, token) = ('', '', '')
     if os.path.exists(token_file_path):
         ''' make sure the file is not more than 5 minutes
         '''
@@ -115,12 +117,23 @@ def get_instance_url_and_access_token(username=''):
                     url = token_json["result"]["instanceUrl"]
                 else:
                     print("Token file %s has no result.instanceUrl" % token_file_path)
+
+                if "result" in token_json and "orgId" in token_json["result"]:
+                    orgId = token_json["result"]["orgId"]
+                else:
+                    print("Token file %s has no result.instanceUrl" % token_file_path)
         else: 
             print("Token file %s is more than 20 minutes old" % token_file_path)
 
     if url == '' or token == '':
-        (url, token) = refresh_access_token(username)
+        (orgId, url, token) = refresh_access_token(username)
 
+    return (orgId, url, token)
+
+def get_instance_url_and_access_token(username=''):
+    """Get the insance URL and an access token using a given auth file.
+    """
+    (orgId, url, token) = get_org_id_instance_url_and_access_token(username)
     return (url, token)
 
 def get_instance_and_access_token(username=''):
@@ -133,4 +146,4 @@ def get_instance_and_access_token(username=''):
 
 if __name__ == "__main__":
     # get_default_username()
-    print(get_access_token("wisdom"))
+    print(get_org_id_instance_url_and_access_token("wisdom"))

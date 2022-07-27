@@ -1,4 +1,4 @@
-CURRENT_USE_CASE:="Describe object"
+CURRENT_USE_CASE:="Get org id, instance URL, and access token"
 
 git-status:
 	git status

@@ -7,6 +7,7 @@ from .access_token import get_default_username
 from .access_token import refresh_access_token
 from .access_token import get_instance_and_access_token
 from .access_token import get_instance_url_and_access_token
+from .access_token import get_org_id_instance_url_and_access_token
 
 from .users import query_users
 
